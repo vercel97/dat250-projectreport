@@ -14,15 +14,22 @@ The front-end of the FeedApp is developed using Angular. Angular is a widely use
 
 Fundamental Consepts of Angular: 
 \begin{description}
-\item[Components]: The angular application is built upon components. For every component, there is a HTML template for the content of the web interface and a TypeScript class that controls the logic. The components are what defines the views, which is what  is displayed to the user on the webpage. 
-\item[Modules]:
-\item[Data Binding]: 
-\item[Dependency Injection]:
-\item[Directives]:
-\item[Routing]: The routing service defines which direction a view should navigate to
+\item[Components and Views]: The angular application is built upon components. For every component, there is a HTML template for the content of the web interface and a TypeScript class that controls the logic. The components are what defines the views, which is what  is displayed to the user on the webpage. 
+\item[Dependency Injection (DI)]: Angular´s dependency injection (DI) system provides services to components. Services are classes that can contain business logic, data handling and functionalities that can be useful in multiple components. In our FeedApp implementation, we created services dedicated to managing authentication and handling poll data. These services made it possible to streamline data interactions and logic across different components, making it easier to control that the underlying operations and management of the data were handled consistently. 
+\item[Routing]: The Angular Router handles the navigation between different views as users performs different tasks. This is a key element in SPAs since instead of reloading the page
 
 Resourses used for writing this paragraph: https://angular.io/guide/architecture 
 \end{description}
+
+Spring Boot 
+
+JSON Web Tokens 
+
+H2, Hibernate 
+
+Java Persistence API 
+
+Mosquitto MQTT
 
 \begin{figure}
   \centering
