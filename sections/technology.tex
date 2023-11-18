@@ -9,7 +9,7 @@
 figures. Figure~\ref{fig:framework} from \cite{brown:96} just
 illustrates how figure can be included in the report.}
 
-Angular:
+\subsection{Angular:}
 The front-end of the FeedApp is developed using Angular. Angular is a widely used framework that is used for building single-page applications (SPAs).
 
 Fundamental Consepts of Angular: 
@@ -21,15 +21,41 @@ Fundamental Consepts of Angular:
 Resourses used for writing this paragraph: https://angular.io/guide/architecture 
 \end{description}
 
-Spring Boot 
+\subsection{Spring Boot}
+\label{subsec:springboot}
+We have chosen Spring Boot as our enterprice software framework when developing our application. Spring Boot is an extension of the Spring Framework that simplifies the development process, making it possible to create a functioning web application fast. To fully understand the benefits of the Spring Boot extension, we are first going to talk a little bit about some of Springs main consepts.  
 
-JSON Web Tokens 
+\textbf{Spring Configurations Explained:}
+\begin{description}
+    \item[Bean Definitions]: In Spring, objects managed by the Spring Inversion of Control (IoC) container are referred to as beans. Configurations involve specifying these beans and managing their lifecycle within the application.
+    \item[Dependency Injection (DI)]: Spring's DI mechanism manages dependencies among application components. This setup is crucial for injecting required services or modules into different parts of the application.
+    \item[Aspect-Oriented Programming (AOP)]: Configurations in Spring also include setting up aspects for handling cross-cutting concerns like logging or transaction management.
+    \item[Data Source and Transaction Management]: For applications interacting with databases, configurations encompass setting up database connections and managing transactions effectively.
+\end{description}
 
-H2, Hibernate 
+\textbf{Deploying a Spring Application:}
+\begin{description}
+    \item[Packaging]: The application is compiled and packaged, typically into a JAR or WAR file, ready for deployment.
+    \item[Running on a Server]: The packaged application is deployed on a web server. Spring Boot, with its embedded server capability, simplifies this by allowing the application to run independently without needing a separate server setup.
+\end{description}
 
-Java Persistence API 
+\textbf{Spring Boot's Role in FeedApp:}
+\begin{description}
+    \item[Auto-Configuration]: Spring Boot automatically configures the application based on the included libraries, reducing the need for extensive manual configuration.
+    \item[Simplified Deployment]: The embedded server feature of Spring Boot allows our application to be deployed as a standalone unit, enhancing ease of deployment and portability.
+\end{description}
 
-Mosquitto MQTT
+In the implementation of our FeedApp prototype, the use of SpringBoots autoconfiguration and deployment functionalities has meade it possible for us to spend more time on the applications buissness logic. 
+
+\subsection{JSON Web Tokens} 
+
+\subsection{H2} 
+
+\subsection{Hibernate} 
+
+\subsection{Java Persistence API} 
+
+\subsection{Mosquitto MQTT}
 
 \begin{figure}
   \centering
