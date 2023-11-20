@@ -10,13 +10,28 @@ figures. Figure~\ref{fig:framework} from \cite{brown:96} just
 illustrates how figure can be included in the report.}
 
 \subsection{Angular:}
-The front-end of the FeedApp is developed using Angular. Angular is a widely used framework that is used for building single-page applications (SPAs).
+We chose Angular as our web application framework to develop the frontend of the FeedApp
+prototype. Angular is a popular, open source TypeScript based framework that is used to create
+Single Page Applications (SPAs). SPAs are web applications that only loads one single page, and then
+changes the content of that page depending on how the user interacts with the page.
 
 Fundamental Consepts of Angular: 
 \begin{description}
-\item[Components and Views]: The angular application is built upon components. For every component, there is a HTML template for the content of the web interface and a TypeScript class that controls the logic. The components are what defines the views, which is what  is displayed to the user on the webpage. 
-\item[Dependency Injection (DI)]: Angular´s dependency injection (DI) system provides services to components. Services are classes that can contain business logic, data handling and functionalities that can be useful in multiple components. In our FeedApp implementation, we created services dedicated to managing authentication and handling poll data. These services made it possible to streamline data interactions and logic across different components, making it easier to control that the underlying operations and management of the data were handled consistently. 
-\item[Routing]: The Angular Router handles the navigation between different views as users performs different tasks. This is a key element in SPAs since instead of reloading the page
+\item[Components]: components are many places described as the main building blocks for Angular applications. Each
+component will contain one HTML-file with the UI-template of the component and one TypeScript-
+file that contains the components logic. It can also contain CSS or SCSS files, defining the styles of the
+component, as well as test files and configuration files. A component defines a specific view, as well
+as the functionality that goes into that view. In other words, it contains both what the user sees in
+the UI and the logic that goes into the component.
+\item[Services]:It is also possible to share different functions and logic between different components. This
+can be done by creating a service, which is a TypeScript file that is used for tasks such as for example
+business logic and handling of data. In our FeedApp implementation, we created services dedicated to managing authentication and handling poll data.
+\item[Dependency Injection (DI)]: Services can also be used to inject dependencies into multiple
+components, with the use of DI. This is useful for connecting the different parts of the application.
+\item[Routing]: The Angular Router handles the navigation between different views as users performs different tasks. This is a key element in SPAs since instead of reloading the page every time the view is changed, 
+
+One of the main advantages of creating the application as a SPA is that it speeds up the development
+process.
 
 Resourses used for writing this paragraph: https://angular.io/guide/architecture 
 \end{description}
