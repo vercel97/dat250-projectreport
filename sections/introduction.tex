@@ -1,25 +1,41 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Approximately 1 page on:
-
+This document outlines the development of a web-based application designed to facilitate interactive polling and voting processes. The application prototype was developed to meet specific requirements for the group project.
 
 \begin{itemize}
+\item Web Front-End: The application will feature a user-friendly web front-end, enabling users to interact with the system via a web browser. This interface will serve as the primary point of user interaction for conducting polls and voting.
 
-\item \textcolor{red}{A brief introduction to the prototype implementation and topic of the project.}
-In this project, an IoT-cloud software system has been developed. The system takes feedback from users in the form of yes/no votes on polls. The polls can be voted on either via an web interface or via an IoT-device. 
+\item Business Logic Implementation: Essential business logic will be embedded within the application to handle the processing of polls, votes, user interactions, and other related functionalities.
 
-\item \textcolor{red}{Discuss (briefly) the technology stack that has been selected, mention related technologies (if relevant), primary arguments for choice of technology stack.}
+\item REST API: The application will include a RESTful API, exposing a select subset of the business logic. This API will facilitate external interactions and integrations with the application.
 
-Here we can maybe add an illustration from the powerpoint 
+\item Database Integration: Persistent storage of polls, voters, users, and other relevant entities will be managed through a relational database, ensuring data integrity and consistency.
 
+\item Voting and Display Device: The project encompasses the development of a voting and display device, which may be either virtual or physical. This device will interact directly with the application's business logic and contribute to the polling process.
 
-\item \textcolor{red}{A brief account of the results that have been obtained in the project.}
+\item Publish-Subscribe System Integration: Results and outcomes of polls will be disseminated through a publish-subscribe messaging system, enhancing the reach and accessibility of polling data.
 
-\item\textcolor{red}{ A one paragraph overview at the end, explaining how the rest of the report is / has been organised}
+\item Dweet.io Integration: Key events such as the initiation and conclusion of polls, along with pertinent information, will be published to dweet.io using RESTful services, ensuring real-time updates and public accessibility.
 
+\item Analytics Component: An analytics subsystem will be implemented, tasked with subscribing to poll data and storing results in a NoSQL database. This component will enable advanced data analysis and insight generation.
+
+\item Security Considerations: The application will be developed with a strong focus on security aspects, including confidentiality, authentication, and authorization, to protect user data and ensure system integrity.
+
+\item Cloud Deployability: While the application will be designed for cloud deployment, actual deployment to a cloud environment is not a mandatory requirement of this project.
 \end{itemize}
 
-\noindent
-This rest of this report is organised as follows:
+\noindent The development of this application aims to integrate these requirements into a single system allowing an interactive polling and voting environment.\\
+
+
+\noindent The technology stack for this project includes a variety of frameworks and systems, each in response to specific aspect of the application's functionality. For the front-end development, we have used Angular to create a responsive and interactive user interface. The business logic and backend services are powered by Spring Boto. To manage the data, we utilize JPA for our relational database needs, ensuring effective data management and retrieval, while H2  is employed for non-relational database operations, offering flexibility and scalability on a Hibernate database. Additionally, Mosquitto is the chosen messaging system, facilitating reliable and efficient message handling across different parts of the application. \\
+
+\noindent In the prototype implementation of our application, we successfully achieved several key functionalities, crucial for its operation and user engagement. The prototype allows for user registration, enabling new users to create accounts and gain elevated access. Once registered, users can seamlessly log in and log out, ensuring secure access to their profiles and activities. A significant feature of the prototype is its capability to create polls, allowing users to initiate new voting sessions. In addition to this, users can also create unlimited questions within these polls. The system includes a feature to search for and find specific polls. Voting mechanisms have been implemented in two distinct forms: users can cast their votes through the web interface, providing ease of access and convenience and/or  have the functionality to cast votes via an IoT device, showcasing the application's capability to interface with physical hardware for a more interactive polling experience.  The prototype successfully demonstrates a few aspects of the creation of a web application with the ability to perform CRUD operations and handle user authentication.  API testing with Postman, demonstrates the application to be responsive and functional. \textcolor{red}{We should say somethign about the database and jpa} This achievement is particularly noteworthy given our team's initial lack of expertise in Java which only highlights our ability to adapt and learn throughout the development process. The prototype's functionality, achieved under these circumstances, thus not only showcases the application's capabilities but also reflects the team's dedication and skill in overcoming technical challenges.\\
+
+
+\noindent This rest of this report is organised as follows:
 Section~\ref{sec:technology} gives an ....
+
+
+\textcolor{red}{TODO: Tell about the document}
+
