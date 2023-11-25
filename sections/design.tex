@@ -2,17 +2,14 @@
 \section{Design of the FeedApp Prototype}
 \label{sec:design}
 
-The overall design framework for the FeedApp project was pre-established at the beginning of the assignment. This design was further amplified through the course of various lectures that looked into different aspects of the project.  Given our initial unfamiliarity with many of the technologies outlined in the project's scope, we proceeded to adopt those specified in the project guidelines.
-
-The project's brief did offer the option to incorporate one additional technology, which, while seemingly providing a degree of flexibility, also imposed certain constraints on our technological explorations. For example, questions such as the feasibility of implementing the project in Python, the existence of a Python persistence model, or Python's capability to interface effectively with a database, remained unexplored. These potential avenues of inquiry could have provided a valabue alternative allowong a more complex design and quicker development approach.
-
-However, the intensive and time-consuming nature of the assignments precluded a thorough investigation into these alternative technological possibilities. As a result, the project proceeded within the confines of the pre-specified technology stack, leaving some questions about potential alternative implementations and technologies unanswered.
-
 \subsection{Architectural Overview} 
 
- Our foundational concept of the FeedApp application was to mimic some of the Kahoot application capabilities while remaining simplistic.  It is accessible through web browsers, ensuring compatibility with devices such as smartphones, tablets, and computers.  Key features of the FeedApp are listed below:
+Our fundamental idea of the FeedApp application was to mimic some of the Kahoot application capabilities while remaining simplistic, keeping alignment with good practices in software development and prototyping.  Our archtiecutre aims to meet requirements, demonstrate core functionality, and balance the effort put into development of a prototype.  \\
 
-(rewrite so that each point is described in a full sentence)
+\noindent The application is accessible through web browsers, ensuring compatibility with devices such as smartphones, tablets, and computers.  Key features of the FeedApp are listed below:
+
+\textcolor{red}{(rewrite so that each point is described in a full sentence)}
+
 \begin{enumerate}
 \item Ability to create and particpate in polls
 \item Flexibility to cast votes via an IoT device or a web browser. 
@@ -46,7 +43,6 @@ The application leverages a REST API to handle incoming data from the IoT device
 \subsubsection{Analytics}
 Once the a vote is cast on the last quesiton in the poll, the application is designed to immediately reflect the analytical data offering insight into collective responses.  The system is designed to facilitate the display of analytics for all polls, regardless of their current status (active or inactive).  This functionality is implemented through a standardized display template, which is accessible via web browsers. The template ensures uniformity in the visualization of analytics, providing a coherent and consistent user experience. In addtion, the system's architecture allows for third-party applications to access poll-related data.  This capability enables external entities to conduct their own analytical assessments.  However, it is important to note that the scope of data accessible to third-party applications is confined to poll-level information. Granular data pertaining to individual questions within the polls is not available for external analysis.
 
-\clearpage
 \subsection{FrontEnd Design} 
 To get an overview of how we wanted to implement the user interface, an application flow diagram was modeled. 
 The diagram displays how the user navigates through the different frames in the front end of the application:
