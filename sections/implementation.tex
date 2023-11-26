@@ -1,4 +1,38 @@
 \section{Prototype Implementation}
 \label{sec:implementation}
 
-This section should provide details of how the prototype has been implemented which may involve presentation of suitable code snippets.
+\subsection{Frontend}
+The following components has been implemented for the front end:
+
+\begin{itemize}
+	\item Login: this is the first view that the user are presented with. It’s main purpose is to
+authenticate users, and help them access the application. It contains input fields for
+username and password. When the user presses “Log in”, he is taken to the main-page of the
+application. If the user is not registered, he can easily do so by pressing the “Register”-
+button.
+	\item Register: here the user is presented a schema, where he can register and that way access the
+application. He needs to add an email address, a username and a password. Once the
+information is submitted, the user is sent back to the login page.
+	\item Main-page: This component contains buttons that lets the user easily navigate to all parts of
+the application quickly.
+	\item Find-poll: Here the user can search for a poll via its id, or by a poll-name. All the polls that
+matches the input will then be displayed with the option to vote on it.
+	\item Create-poll: Here the user can create a new poll. He can decide the questions that should be
+displayed, when the poll is active, if it is private and invite users to participate in it. Once
+created, a poll-id is given to the user. This can for example be given to other users and used
+to search for the poll.
+	\item Vote: Here the user gets to submit votes to active polls.
+\end{itemize}
+
+A authentication service, a poll service and a voting service has also been created to handle logic that
+can be applied to multiple components. The authentication service handles operations such as
+logging the user in to the application and searching for users. The poll service handles logic depicting
+the polls such as finding polls, creating polls and changing polls. The Voting service handles the logic
+connected to the voting.
+
+There are also a few features that we modelled into our application in the first phase of this project,
+but due to the time constraints are yet to be implemented. These include Poll management and User
+management. Currently the application allows users to create and participate in polls. However, the
+management of the polls is not yet functional. The same goes for the management of the user
+settings. The buttons has been created in the main-page component, but they are not directing the
+users to new views yet.
