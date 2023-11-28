@@ -10,23 +10,13 @@ About 2 pages that:
 
 \end{description}
 
-For some reports you may have to include a table with experimental
-results are other kinds of tables that for instance compares
-technologies. Table~\ref{tab:results} gives an example of how to create a table.
+\subsection{Frontend testing}
+When developing the frontend of our application, multiple testing strategies were performed to make sure that the 
+application's functionalities were behaving as expected. One of the advantages of using Angular, is that it provides 
+the option to do real-time compilation of the application. This feature made it possible to view the results immediately 
+after code changes. This shortened the time spent on troubleshooting errors. The inspect tool in the browser were 
+also a great tool that quickly let us inspect the applications. The console feature were handy when inspecting the 
+HTML and CSS, and the Network analysis tool gave us a great insight into how the frontend and the backend 
+communicated. Alerts were also created to notify the user whenever errors and issues occurred. 
+of errors 
 
-\begin{table}
-\centering
-\begin{tabular}{llrrrrrr}
-  Config & Property & States & Edges & Peak & E-Time & C-Time & T-Time
-  \\ \hline \hline
-22-2 & A   &    7,944  &   22,419  &  6.6  \%  &  7 ms & 42.9\% &  485.7\% \\
-22-2 & A   &    7,944  &   22,419  &  6.6  \%  &  7 ms & 42.9\% &  471.4\% \\
-30-2 & B   &   14,672  &   41,611  &  4.9  \%  & 14 ms & 42.9\% &  464.3\% \\
-30-2 & C   &   14,672  &   41,611  &  4.9  \%  & 15 ms & 40.0\% &  420.0\% \\ \hline
-10-3 & D   &   24,052  &   98,671  & 19.8  \%  & 35 ms & 31.4\% &  285.7\% \\
-10-3 & E   &   24,052  &   98,671  & 19.8  \%  & 35 ms & 34.3\% &  308.6\% \\
-\hline \hline
-\end{tabular}
-\caption{Selected experimental results on the communication protocol example.}
-\label{tab:results}
-\end{table}
