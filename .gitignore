@@ -1,6 +1,9 @@
-#*.pdf // remove comment once you have cloned the repository
+*.pdf // remove comment once you have cloned the repository
 *.log
 *.blg
 *.bbl
 *.aux
 *~
+*.out
+*report.synctex.gz
+*.gz
