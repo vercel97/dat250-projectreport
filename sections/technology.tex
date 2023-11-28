@@ -11,56 +11,60 @@ illustrates how figure can be included in the report.}
 
 \subsection{Angular:}
 We chose Angular as our web application framework to develop the frontend of the FeedApp
-prototype. Angular is a popular, open source TypeScript based framework that is used to create
+prototype. Angular is a popular, open source TypeScript based framework\footnote{1} that is used to create
 Single Page Applications (SPAs). SPAs are web applications that only loads one single page, and then
 changes the content of that page depending on how the user interacts with the page.
 
-Fundamental Consepts of Angular: 
-\begin{description}
-\item[Components]: components are many places described as the main building blocks for Angular applications. Each
+\subsubsection{Fundamental Consepts of Angular }
+\begin{itemize}
+\item Components: Components are many places described as the main building blocks for Angular applications. Each
 component will contain one HTML-file with the UI-template of the component and one TypeScript-
 file that contains the components logic. It can also contain CSS or SCSS files, defining the styles of the
 component, as well as test files and configuration files. A component defines a specific view, as well
 as the functionality that goes into that view. In other words, it contains both what the user sees in
 the UI and the logic that goes into the component.
-\item[Services]:It is also possible to share different functions and logic between different components. This
+\item Services: It is also possible to share different functions and logic between different components. This
 can be done by creating a service, which is a TypeScript file that is used for tasks such as for example
 business logic and handling of data. In our FeedApp implementation, we created services dedicated to managing authentication and handling poll data.
-\item[Dependency Injection (DI)]: Services can also be used to inject dependencies into multiple
+\item Dependency Injection (DI): Services can also be used to inject dependencies into multiple
 components, with the use of DI. This is useful for connecting the different parts of the application.
-\item[Routing]: The Angular Router handles the navigation between different views as users performs different tasks. This is a key element in SPAs since instead of reloading the page every time the view is changed, 
+\item Routing: The Angular Router handles the navigation between different views as users performs different tasks. This is a key element in SPAs since instead of reloading the page every time the view is changed.
+\end{itemize}
 
 One of the main advantages of creating the application as a SPA is that it speeds up the development
 process.
-
+For more 
 Resourses used for writing this paragraph: https://angular.io/guide/architecture 
-\end{description}
 
 \subsection{Spring Boot}
 \label{subsec:springboot}
-We have chosen Spring Boot as our enterprice software framework when developing our application. Spring Boot is an extension of the Spring Framework that simplifies the development process, making it possible to create a functioning web application fast. To fully understand the benefits of the Spring Boot extension, we are first going to talk a little bit about some of Springs main consepts.  
 
-\textbf{Spring Configurations Explained:}
-\begin{description}
-    \item[Bean Definitions]: In Spring, objects managed by the Spring Inversion of Control (IoC) container are referred to as beans. Configurations involve specifying these beans and managing their lifecycle within the application.
-    \item[Dependency Injection (DI)]: Spring's DI mechanism manages dependencies among application components. This setup is crucial for injecting required services or modules into different parts of the application.
-    \item[Aspect-Oriented Programming (AOP)]: Configurations in Spring also include setting up aspects for handling cross-cutting concerns like logging or transaction management.
-    \item[Data Source and Transaction Management]: For applications interacting with databases, configurations encompass setting up database connections and managing transactions effectively.
-\end{description}
+We have chosen Spring Boot as our enterprice software framework when developing our application. Spring Boot is an extension of the Spring Framework that simplifies the development process, making it possible to create a functioning web application fast. Considering the time limitation we had on our project, Spring Boot seemed like a good choice when choosing a framework. 
 
-\textbf{Deploying a Spring Application:}
-\begin{description}
-    \item[Packaging]: The application is compiled and packaged, typically into a JAR or WAR file, ready for deployment.
-    \item[Running on a Server]: The packaged application is deployed on a web server. Spring Boot, with its embedded server capability, simplifies this by allowing the application to run independently without needing a separate server setup.
-\end{description}
+\subsubsection{Spring Framework}
 
-\textbf{Spring Boot's Role in FeedApp:}
-\begin{description}
-    \item[Auto-Configuration]: Spring Boot automatically configures the application based on the included libraries, reducing the need for extensive manual configuration.
-    \item[Simplified Deployment]: The embedded server feature of Spring Boot allows our application to be deployed as a standalone unit, enhancing ease of deployment and portability.
-\end{description}
+To fully understand the benefits of the Spring Boot extension, we are first going to briefly go through some core concepts in the Spring Framework\footnote{2}:
 
-In the implementation of our FeedApp prototype, the use of SpringBoots autoconfiguration and deployment functionalities has meade it possible for us to spend more time on the applications buissness logic. 
+\begin{itemize}
+    	\item Bean Definition: Beans are often described as the backbone of a Spring application. They are managed by the Spring Inversion of Control (IoC) Container. How they are configured, and how their lifecycle is managed plays an important role when having a smooth and proper running application. 
+    \item Dependency Injection (DI): Spring's DI mechanism manages dependencies among application components. This setup is crucial for injecting required services and modules into different parts of the application.
+    \item Aspect-Oriented Programming (AOP): In Spring, AOP makes it possible to handle tasks that are common in multiple parts of an application efficiently by defining the function and then applying it to the sections that need to use it.
+\end{itemize}
+
+How a Spring application is deployed:
+
+\begin{itemize}
+    \item Packaging: The application is compiled and packaged, typically into a JAR or WAR file, ready for deployment.
+    \item Running on a Server: The packaged application is deployed on a web server. Spring Boot, with its embedded server capability, simplifies this by allowing the application to run independently without needing a separate server setup.
+\end{itemize}
+
+\subsubsection{Spring Boot's Role in FeedApp:}
+\begin{itemize}
+    \item Auto-Configuration: Spring Boot automatically configures the application based on the included libraries, reducing the need for extensive manual configuration.
+    \item Simplified Deployment: The embedded server feature of Spring Boot allows our application to be deployed as a standalone unit, enhancing ease of deployment and portability.
+\end{itemize}
+
+In the implementation of our FeedApp prototype, the use of Spring Boots auto configuration and deployment functionalities has made it possible for us to spend more time on the applications business logic. 
 
 \subsection{JSON Web Tokens}
 \begin{description}
