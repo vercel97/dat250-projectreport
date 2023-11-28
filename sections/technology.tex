@@ -67,49 +67,34 @@ How a Spring application is deployed:
 In the implementation of our FeedApp prototype, the use of Spring Boots auto configuration and deployment functionalities has made it possible for us to spend more time on the applications business logic. 
 
 \subsection{JSON Web Tokens}
-\begin{description}
- \item[Introduction to JSON Web Tokens (JWT):]
-We used an open standard called JSON Web Tokens (JWT), that provides a condensed, self-contained method for securely exchanging data as a JSON object between parties. This data is digitally signed, so it can be validated and trusted. RSA or ECDSA can be used to sign JWTs with a secret key or a public/private key pair.
-
- \item[Usage in FeedApp:]
-JWTs are essential to our FeedApp's authentication procedure. A JWT is given to a user upon login. Subsequent requests to authenticate the user and grant access to restricted routes, services, and resources within the application will then utilize this token. Because of their short size and ease of use, JWTs are the ideal format for our application and work well in our web-based environment.
-\end{description}
+\begin{itemize}
+ \item We used an open standard called JSON Web Tokens (JWT), that provides a condensed, self-contained method for securely exchanging data as a JSON object between parties. This data is digitally signed, so it can be validated and trusted. RSA or ECDSA can be used to sign JWTs with a secret key or a public/private key pair. \footnote{https://datatracker.ietf.org/doc/html/rfc7519}
+ \item JWTs are essential to our FeedApp's authentication procedure. A JWT is given to a user upon login. Subsequent requests to authenticate the user and grant access to restricted routes, services, and resources within the application will then utilize this token. Because of their short size and ease of use, JWTs are the ideal format for our application and work well in our web-based environment.
+\end{itemize}
 
 \subsection{H2 Database}
-\begin{description}
- \item[Overview of H2 Database:]
-We used a quick and easy approach to store and manage data with the lightweight H2 database. Because of its cheap overhead and ease of setup, it's especially helpful throughout the development and testing phases. H2 can operate embedded within a Java program or in client-server mode.
-
- \item[Application in FeedApp:]
-We are using the H2 database in FeedApp development for testing and prototyping. It eliminates the requirement for a complicated database setup and enables us to simulate database interactions and run unit tests. The H2 database is the perfect option for our needs for rapid development because it interfaces with our Spring Boot platform.
-\end{description}
+\begin{itemize}
+ \item We used a quick and easy approach to store and manage data with the lightweight H2 database. Because of its cheap overhead and ease of setup, it's especially helpful throughout the development and testing phases. H2 can operate embedded within a Java program or in client-server mode.
+ \item We are using the H2 database in FeedApp development for testing and prototyping. It eliminates the requirement for a complicated database setup and enables us to simulate database interactions and run unit tests. The H2 database is the perfect option for our needs for rapid development because it interfaces with our Spring Boot platform.
+\end{itemize}
 
 \subsection{Hibernate}
-\begin{description}
- \item[Hibernate Framework Overview:]
-For Java applications, Hibernate is a powerful Object-Relational Mapping (ORM) framework. It offers a framework for converting a conventional relational database to an object-oriented domain model. Hibernate resolves the mismatch issues by substituting high-level object handling routines with direct, permanent database accesses.
-
- \item[Functionality in FeedApp:]
-Hibernate is used in our FeedApp to make it easier for our Java application to communicate with the database. The CRUD (Create, Read, Update, Delete) procedures are made simpler and more effective by managing database operations and data persistence. Our team is able to concentrate more on the business logic and less on database management because Hibernate abstracts the database logic.
-\end{description}
+\begin{itemize}
+ \item For Java applications, Hibernate is a powerful Object-Relational Mapping (ORM) framework. It offers a framework for converting a conventional relational database to an object-oriented domain model. Hibernate resolves the mismatch issues by substituting high-level object handling routines with direct, permanent database accesses. \footnote{https://hibernate.org/orm/}
+ \item Hibernate is used in our FeedApp to make it easier for our Java application to communicate with the database. The CRUD (Create, Read, Update, Delete) procedures are made simpler and more effective by managing database operations and data persistence. Our team is able to concentrate more on the business logic and less on database management because Hibernate abstracts the database logic.
+\end{itemize}
 
 \subsection{Java Persistence API}
-\begin{description}
- \item[Introduction to Java Persistence API (JPA):]
-A Java specification for managing, retrieving, and storing data between Java objects and a relational database is called the Java Persistence API (JPA). JPA, which is a component of the Java EE platform, makes it easier to create Java apps that communicate with databases.
-
- \item[Integration in FeedApp:]
-JPA is implemented into FeedApp to manage our application's relational data. It offers a platform for managing relational data in Java programs and executing database operations on Java Entities. Hibernate and JPA work together to make database administration in our application more error-free and efficient.
-\end{description}
+\begin{itemize}
+ \item A Java specification for managing, retrieving, and storing data between Java objects and a relational database is called the Java Persistence API (JPA). JPA, which is a component of the Java EE platform, makes it easier to create Java apps that communicate with databases.
+ \item JPA is implemented into FeedApp to manage our application's relational data. It offers a platform for managing relational data in Java programs and executing database operations on Java Entities. Hibernate and JPA work together to make database administration in our application more error-free and efficient.
+\end{itemize}
 
 \subsection{Mosquitto MQTT}
-\begin{description}
- \item[Understanding Mosquitto MQTT:]
-A simple publish-subscribe network protocol called MQTT (Message Queuing Telemetry Transport) is used to send messages between devices. Mosquitto is portable and works with a wide range of devices, including powerful servers and single-board computers with minimal power consumption.
-
- \item[Role in FeedApp:]
-Mosquitto MQTT is essential to our FeedApp since it manages real-time messages and facilitates effective connectivity with IoT devices. MQTT is a good solution for our IoT-related capabilities since it guarantees efficient and reliable message delivery even in limited contexts. Maintaining the application's responsiveness and performance requires minimal resource usage, which is ensured by its lightweight design.
-\end{description}
+\begin{itemize}
+ \item A simple publish-subscribe network protocol called MQTT (Message Queuing Telemetry Transport) is used to send messages between devices. Mosquitto is portable and works with a wide range of devices, including powerful servers and single-board computers with minimal power consumption. \footnote{https://mosquitto.org/}
+ \item Mosquitto MQTT is essential to our FeedApp since it manages real-time messages and facilitates effective connectivity with IoT devices. MQTT is a good solution for our IoT-related capabilities since it guarantees efficient and reliable message delivery even in limited contexts. Maintaining the application's responsiveness and performance requires minimal resource usage, which is ensured by its lightweight design.
+\end{itemize}
 
 \begin{figure}
   \centering

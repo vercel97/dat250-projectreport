@@ -86,6 +86,90 @@ onSubmit() {
 This function makes sure that only users with valid credentials are able to access the main page of the application, while also handling 
 different error scenarios. If a user gives an incorrect credential or any other login error occurs, an error message is displayed. 
 
+\subsection{Backend}
+The architecture of our program has modular architecture that includes multiple important entities and their corresponding repositories.
+
+\subsubsection{Entities}
+\begin{itemize}
+    \item \textbf{AppUser}: Represents application users, each having a unique username, email, and password. Users can create and manage multiple polls.
+    \item \textbf{Poll}: The core entity in our application, representing polls created by users. It includes details like title, open/close status, and duration, and can contain multiple questions. Polls are linked to IoT devices.
+    \item \textbf{Question}: Constitutes individual items within polls for users to vote on. Records responses and associates with specific polls.
+    \item \textbf{Vote}: Records user votes in polls, indicating 'yes' or 'no' choices.
+    \item \textbf{IoTDevice and IoTDisplay}: Integration with physical IoT devices.
+    \item \textbf{ThirdPartyApp and Voter}: Special user types in our system, allowing to distinguishing voters from regular users.
+\end{itemize}
+
+\subsubsection{Repositories}
+\begin{itemize}
+    \item \textbf{AppUserRepository}: Manages \texttt{AppUser} data operations, including user lookup by username.
+    \item \textbf{PollRepository}: Handles data operations for \texttt{Poll}, with custom queries for poll title searches.
+    \item \textbf{QuestionRepository}: Provides data access for \texttt{Question}.
+    \item \textbf{VoteRepository}: Manages \texttt{Vote} data, including vote counting in polls.
+    \item \textbf{VoterRepository}: Dedicated to \texttt{Voter} entity operations.
+\end{itemize}
+
+\subsubsection{Integration with Spring Boot, Hibernate, and JPA}
+Our voting application uses:
+
+\begin{itemize}
+    \item \textbf{Spring Boot} as a framework, simplifing configuration and setup.
+    \item \textbf{Hibernate} as the ORM tool, translating Java objects to database representations.
+    \item \textbf{JPA interfaces}, such as \texttt{JpaRepository}, for efficient data access and manipulation.
+\end{itemize}
+
+\subsubsection{Functionality}
+
+Supported data models functionalities in our application:
+\begin{itemize}
+    \item User registration and management.
+    \item Interactive poll creation and management.
+    \item Voting mechanisms within polls.
+    \item Integration with IoT devices for an enhanced user experience.
+\end{itemize}
+
+\subsection{REST API}
+The web application consists of three key controllers, each handling different aspects of the voting system:
+
+\begin{itemize}
+    \item \textbf{AppUserController}: Manages user-related functionalities, such as user registration, authentication, and profile management.
+    \item \textbf{PollController}: Focused on poll management, including creating, updating, and deleting polls, as well as opening and closing them, and publishing results.
+    \item \textbf{QuestionController}: Handles operations related to individual questions within polls, including CRUD operations and specific voting mechanisms.
+\end{itemize}
+
+\subsubsection{RESTful Design}
+All three controllers are designed following REST principles, offering a specific base URLs and using HTTP methods for standard CRUD operations.
+
+\subsubsection{Spring Boot and Spring Data Integration}
+They utilize Spring Boot's capabilities for creating standalone applications and Spring Data's repository pattern for data access. Dependency injection with \texttt{@Autowired} is also used.
+
+\subsubsection{Error Handling and Response Management}
+The controllers use \texttt{ResponseEntity} class for HTTP response handling, allowing them to manage different scenarios (even those ending with an error).
+
+Method \texttt{deleteQuestion} in \texttt{QuestionController} that is responsible for deleting a question in a poll returns an error response if the question wasn't found:
+\begin{verbatim}
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteQuestion(@PathVariable int id) {
+      Optional<Question> question = questionRepository.findById(id);
+      if (question.isPresent()) {
+          questionRepository.delete(question.get());
+          return ResponseEntity.ok().build();
+      } else {
+          return ResponseEntity.notFound().build();
+      }
+  }
+\end{verbatim}
+
+\subsubsection{Unique Features}
+\begin{itemize}
+    \item \textbf{AppUserController}: Includes user authentication, registration, and verification processes.
+    \item \textbf{PollController}: Manages poll result publication and status (open/close).
+    \item \textbf{QuestionController}: Introduces a voting mechanism for questions, indicating interaction granularity.
+\end{itemize}
+
+\subsubsection{Security and User Management}
+The \texttt{AppUserController} focuses on security and user identity management through authentication and JWT token management.
+
+\hfill \break
 
 There are also a few features that we modelled into our application in the first phase of this project,
 but due to the time constraints are yet to be implemented. These include Poll management and User
