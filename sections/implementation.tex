@@ -25,66 +25,35 @@ to search for the poll.
 	\item Vote: Here the user gets to submit votes to active polls.
 \end{itemize}
 
-A authentication service, a poll service and a voting service has also been created to handle logic that
+\noindent A authentication service, a poll service and a voting service has also been created to handle logic that
 can be applied to multiple components. The authentication service handles operations such as
 logging the user in to the application and searching for users. The poll service handles logic depicting
 the polls such as finding polls, creating polls and changing polls. The Voting service handles the logic
-connected to the voting.
-
-The following subsection describes more detailed how the logic behind the authentification process has been implemented, 
+connected to the voting.  The following subsection describes more detailed how the logic behind the authentification process has been implemented, 
 and displays how the frontend is connected to the REST API. 
 
 \subsubsection{Authentication Process}
 A crucial part of the frontend implementation is the user authentication process. 
-This is managed through the \texttt{login} method in the \texttt{auth.service} file and the \texttt{onSubmit} method in the \texttt{LoginComponent}.
+This is managed through the \texttt{login} method in the \texttt{auth.service} file and the \texttt{onSubmit} method in the \texttt{LoginComponent}.  The \texttt{login} method is defined as: \\
 
-The \texttt{login} method is defined as:
-\begin{verbatim}
-login(user: { username: string, password: string }) {
-  return this.http.post<string>(`${this.apiUrl}/login`, user, {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    responseType: 'text' as 'json'
-  }).pipe(
-    tap(response => {
-      localStorage.setItem('authToken', response);
-      localStorage.setItem('username', user.username);
-      console.log('Server response:', response);
-    })
-  );
-}
-\end{verbatim}
+\begin{center}
+\includegraphics[width=0.80\textwidth]{figs/login.png}
+\end{center}
 
-This method handles user login credentials, sending them to the backend for verification and storing the received token and 
-username in the browser's local storage for session management. The token is stored in the local storage to maintain the user sessions. 
+\noindent This method handles user login credentials, sending them to the backend for verification and storing the received token and 
+username in the browser's local storage for session management. The token is stored in the local storage to maintain the user sessions. \\
 
-The \texttt{LoginComponent} uses this service in its \texttt{onSubmit} method:
-\begin{verbatim}
-onSubmit() {
-  if (this.loginForm.valid) {
-    this.authService.login(this.loginForm.value)
-      .subscribe(
-        (token: string) => {
-          if (token) {
-            localStorage.setItem('authToken', token);
-            this.router.navigate(['/main-page']);
-          } else {
-            alert('Incorrect username or password.');
-          }
-        },
-        (error: any) => {
-          if (error.status === 401) {
-            alert('Incorrect username or password.');
-          } else {
-            alert('An error occurred during login.');
-          }
-        }
-      );
-  }
-}
-\end{verbatim}
+\noindent The \texttt{LoginComponent} uses this service in its \texttt{onSubmit} method: \\
 
-This function makes sure that only users with valid credentials are able to access the main page of the application, while also handling 
-different error scenarios. If a user gives an incorrect credential or any other login error occurs, an error message is displayed. 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figs/on_submit.png}
+  \caption{Verification Service Example}
+  \label{fig:my_label}
+\end{figure}
+
+\noindent This function makes sure that only users with valid credentials are able to access the main page of the application, while also handling 
+different error scenarios. If a user gives an incorrect credential or any other login error occurs, an error message is displayed. \\
 
 \subsection{Backend}
 The architecture of our program has modular architecture that includes multiple important entities and their corresponding repositories.
@@ -149,47 +118,36 @@ Supported data models functionalities in our application:
 The web application consists of three key controllers, each handling different aspects of the voting system:
 
 \begin{itemize}
-    \item \textbf{AppUserController}: Manages user-related functionalities, such as user registration, authentication, and profile management.
-    \item \textbf{PollController}: Focused on poll management, including creating, updating, and deleting polls, as well as opening and closing them, and publishing results.
-    \item \textbf{QuestionController}: Handles operations related to individual questions within polls, including CRUD operations and specific voting mechanisms.
+    \item The AppUserController is responsible for critical user-related functions, including user authentication, registration, and the verification process.
+    \item The PollController oversees the management of polls, specifically handling the publication of poll results and controlling their status, whether open or closed.
+    \item The QuestionController introduces and manages a voting mechanism for individual questions, reflecting a finer level of interaction and user engagement within the application., indicating interaction granularity.
 \end{itemize}
 
-\subsubsection{RESTful Design}
 All three controllers are designed following REST principles, offering a specific base URLs and using HTTP methods for standard CRUD operations.
 
 \subsubsection{Spring Boot and Spring Data Integration}
 They utilize Spring Boot's capabilities for creating standalone applications and Spring Data's repository pattern for data access. Dependency injection with \texttt{@Autowired} is also used.
 
 \subsubsection{Error Handling and Response Management}
-The controllers use \texttt{ResponseEntity} class for HTTP response handling, allowing them to manage different scenarios (even those ending with an error).
+The controllers use \texttt{ResponseEntity} class for HTTP response handling, allowing them to manage different scenarios (even those ending with an error).  Method \texttt{deleteQuestion} in \texttt{QuestionController} that is responsible for deleting a question in a poll returns an error response if the question wasn't found:
 
-Method \texttt{deleteQuestion} in \texttt{QuestionController} that is responsible for deleting a question in a poll returns an error response if the question wasn't found:
-\begin{verbatim}
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteQuestion(@PathVariable int id) {
-      Optional<Question> question = questionRepository.findById(id);
-      if (question.isPresent()) {
-          questionRepository.delete(question.get());
-          return ResponseEntity.ok().build();
-      } else {
-          return ResponseEntity.notFound().build();
-      }
-  }
-\end{verbatim}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figs/delete_mapping.png}
+  \caption{Error Handling Response}
+  \label{fig:my_label}
+\end{figure}
 
 \subsubsection{Unique Features}
 \begin{itemize}
-    \item \textbf{AppUserController}: Includes user authentication, registration, and verification processes.
-    \item \textbf{PollController}: Manages poll result publication and status (open/close).
-    \item \textbf{QuestionController}: Introduces a voting mechanism for questions, indicating interaction granularity.
+    \item interaction granularity.
 \end{itemize}
 
 \subsubsection{Security and User Management}
-The \texttt{AppUserController} focuses on security and user identity management through authentication and JWT token management.
+The \texttt{AppUserController} focuses on security and user identity management through authentication and JWT token management. \\
 
-\hfill \break
 
-There are also a few features that we modelled into our application in the first phase of this project,
+\noindent There are also a few features that we modelled into our application in the first phase of this project,
 but due to the time constraints are yet to be implemented. These include Poll management and User
 management. Currently the application allows users to create and participate in polls. However, the
 management of the polls is not yet functional. The same goes for the management of the user
