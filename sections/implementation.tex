@@ -100,17 +100,31 @@ We will begin by describing the structural components of the application which i
 
 \noindent The \texttt{IoTDisplay} is a singleton class only aware of its associated IoT device by the property pariedDevice, which contains a string value of of the device name. \\
 
-\noindent \texttt{ThirdPartyApp} interface class provides logic to allow third party entties to retreive data from the application. \\
+\noindent \texttt{ThirdPartyApp} interface class provides logic to allow third party entties to retreive data from the application. \\ \\
 
 
 \subsubsection{Repositories}
-\begin{itemize}
-    \item \textbf{AppUserRepository}: Manages \texttt{AppUser} data operations, including user lookup by username.
-    \item \textbf{PollRepository}: Handles data operations for \texttt{Poll}, with custom queries for poll title searches.
-    \item \textbf{QuestionRepository}: Provides data access for \texttt{Question}.
-    \item \textbf{VoteRepository}: Manages \texttt{Vote} data, including vote counting in polls.
-    \item \textbf{VoterRepository}: Dedicated to \texttt{Voter} entity operations.
-\end{itemize}
+JPA repositories helps with performing create, read,update and delete (CRUD) database operations by reducing the need to manually code complex SQL queries.  We use these repositories with JPA EntityManager to interact with the database. We have defined various repositories in the FeedApp responsible for handling specific data operations.\\
+
+\noindent The \texttt{AppUserRepository} manages the \texttt{AppUser}entity data operations, including user lookup by username.
+\noindent \texttt{PollRepository} handles data operations for the \texttt{Poll} entity, with custom queries for poll title searches.\\
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figs/poll_repository.png}
+  \caption{Custom Poll Title Query}
+  \label{fig:my_label}
+\end{figure}
+
+\noindent The \texttt{QuestionRepository} provides data access for \texttt{Question} entity.
+\noindent \texttt {VoteRepository} manages \texttt{Vote} data, including vote counting in polls.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figs/vote_repository.png}
+  \caption{CustomVoting Query}
+  \label{fig:my_label}
+\end{figure}
 
 \subsubsection{Integration with Spring Boot, Hibernate, and JPA}
 Our voting application uses:
