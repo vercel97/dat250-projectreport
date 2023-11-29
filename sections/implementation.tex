@@ -90,14 +90,18 @@ different error scenarios. If a user gives an incorrect credential or any other 
 The architecture of our program has modular architecture that includes multiple important entities and their corresponding repositories.
 
 \subsubsection{Entities}
-\begin{itemize}
-    \item \textbf{AppUser}: Represents application users, each having a unique username, email, and password. Users can create and manage multiple polls.
-    \item \textbf{Poll}: The core entity in our application, representing polls created by users. It includes details like title, open/close status, and duration, and can contain multiple questions. Polls are linked to IoT devices.
-    \item \textbf{Question}: Constitutes individual items within polls for users to vote on. Records responses and associates with specific polls.
-    \item \textbf{Vote}: Records user votes in polls, indicating 'yes' or 'no' choices.
-    \item \textbf{IoTDevice and IoTDisplay}: Integration with physical IoT devices.
-    \item \textbf{ThirdPartyApp and Voter}: Special user types in our system, allowing to distinguishing voters from regular users.
-\end{itemize}
+We will begin by describing the structural components of the application which is object-oriented by design. The primary class, \texttt{AppUser}, implements properties such as username, email, and password. It also holds a collection of polls owned by the AppUser.  A critical feature of this class is the implementation of two-factor authentication, validated through a verification code to ascertain user authenticity. \\
+
+\noindent The \texttt{Poll} class, a core entity in our application, represents polls created by users. It includes details like title, open/close status, and duration, and can contain multiple questions. The poll implements general properties for storing privacy status, activity status, duration, and IoT device pairing. It also implements specific properties like the poll title, vote tallies, a list of authorized users (for private polls only) and funttion implementation to perform question management such as add, delete and edit. Polls are also linked to IoT device and therefore, holds information on which device it is paired with.\\
+
+\noindent The \texttt{Question} class constitutes individual items within polls for users to vote on. Records responses and associates with specific polls.\\
+
+\noindent A \texttt{Vote} class records user votes in polls, indicating 'yes' or 'no' choices. It contains the logic that is responsble for determining which question in a poll the vote should be submitted towards.\\
+
+\noindent The \texttt{IoTDisplay} is a singleton class only aware of its associated IoT device by the property pariedDevice, which contains a string value of of the device name. \\
+
+\noindent \texttt{ThirdPartyApp} interface class provides logic to allow third party entties to retreive data from the application. \\
+
 
 \subsubsection{Repositories}
 \begin{itemize}
