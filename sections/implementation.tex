@@ -69,7 +69,7 @@ We will begin by describing the structural components of the application which i
 
 \noindent The \texttt{IoTDisplay} is a singleton class only aware of its associated IoT device by the property pariedDevice, which contains a string value of of the device name. \\
 
-\noindent \texttt{ThirdPartyApp} interface class provides logic to allow third party entties to retreive data from the application. \\ \\
+\noindent \texttt{ThirdPartyApp} interface class provides logic to allow third party entties to retreive data from the application. \\
 
 
 \subsubsection{Repositories}
@@ -99,9 +99,9 @@ JPA repositories helps with performing create, read,update and delete (CRUD) dat
 Our voting application uses:
 
 \begin{itemize}
-    \item \textbf{Spring Boot} as a framework, simplifing configuration and setup.
-    \item \textbf{Hibernate} as the ORM tool, translating Java objects to database representations.
-    \item \textbf{JPA interfaces}, such as \texttt{JpaRepository}, for efficient data access and manipulation.
+    \item {Spring Boot} as a framework, simplifing configuration and setup.
+    \item {Hibernate} as the ORM tool, translating Java objects to database representations.
+    \item {JPA interfaces}, such as \texttt{JpaRepository}, for efficient data access and manipulation.
 \end{itemize}
 
 \subsubsection{Functionality}
@@ -118,12 +118,20 @@ Supported data models functionalities in our application:
 The web application consists of three key controllers, each handling different aspects of the voting system:
 
 \begin{itemize}
-    \item The AppUserController is responsible for critical user-related functions, including user authentication, registration, and the verification process.
+    \item The AppUserController is responsible for user-related functions, including user authentication, registration, and the verification process.  It implements the AppUser entity using depencency injection by the @Autowired annotation to reference AppUserRepository and AppUserService. 
     \item The PollController oversees the management of polls, specifically handling the publication of poll results and controlling their status, whether open or closed.
-    \item The QuestionController introduces and manages a voting mechanism for individual questions, reflecting a finer level of interaction and user engagement within the application., indicating interaction granularity.
+    \item The QuestionController introduces and manages a voting mechanism for individual questions, reflecting a finer level of interaction and user engagement within the application.  It is mapped 
+    \item The IOTController class in annotated with @RestController which is part of a RESTful web service in a Java application using the Spring Framework. It handles HTTP requests specifically related to IoT device notifications.  The controller is mapped to handle requests at the /api/notifications path.  It defines two endpoints for processing notifications sent from the IoT device, /api/notification/greenVote and /api/notification/redVote.  
 \end{itemize}
 
-All three controllers are designed following REST principles, offering a specific base URLs and using HTTP methods for standard CRUD operations.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figs/green_vote.png}
+  \caption{Green Vote Endpoint}
+  \label{fig:my_label}
+\end{figure}
+
+\noindent All controllers are designed following REST principles, offering a specific base URLs and using HTTP methods for standard CRUD operations.
 
 \subsubsection{Spring Boot and Spring Data Integration}
 They utilize Spring Boot's capabilities for creating standalone applications and Spring Data's repository pattern for data access. Dependency injection with \texttt{@Autowired} is also used.
@@ -138,18 +146,19 @@ The controllers use \texttt{ResponseEntity} class for HTTP response handling, al
   \label{fig:my_label}
 \end{figure}
 
-\subsubsection{Unique Features}
-\begin{itemize}
-    \item interaction granularity.
-\end{itemize}
 
 \subsubsection{Security and User Management}
-The \texttt{AppUserController} focuses on security and user identity management through authentication and JWT token management. \\
-
-
-\noindent There are also a few features that we modelled into our application in the first phase of this project,
+The \texttt{AppUserController} focuses on security and user identity management through authentication and JWT token management.  There are also a few features that we modelled into our application in the first phase of this project,
 but due to the time constraints are yet to be implemented. These include Poll management and User
 management. Currently the application allows users to create and participate in polls. However, the
 management of the polls is not yet functional. The same goes for the management of the user
 settings. The buttons has been created in the main-page component, but they are not directing the
 users to new views yet.
+
+\subsubsection{IoT Device}
+The IoT device in our system, a physical unit, is implemented using C++ and is based on the ESP 8266 module, enabling Wi-Fi connectivity. This device is programmed with hardcoded Wi-Fi credentials which in our case is a cellar hotspot. Its design is straightforward, featuring just two buttons, referred to as the red and green buttons. The device is configured to publish a message to the MQTT broker whenever a button is pressed; however, it does not register continuous presses but only single clicks. These messages are then relayed by the MQTT broker, post distinct messages via REST interfacing with the IoTController.
+
+  \begin{center}
+  \includegraphics[width=0.80\textwidth]{figs/button1_pressed.png}
+  \end{center}
+
