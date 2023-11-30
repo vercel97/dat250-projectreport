@@ -25,16 +25,16 @@ For this project, a physical IoT device was chosen to add the interactive dimens
 The project's infrastructure includes an Internet of Things (IoT) device, functioning independently on a dedicated hardware platform. This device establishes a wireless connection with a Windows-based HP laptop, which serves a dual purpose: as a control unit and as a display for the IoT device's operations. The design stipulates that both the IoT device and the laptop must share the same Wi-Fi network for seamless communication.
 
 \subsubsection{IOTDevice Integration with FeedApp}
-Further enhancing the system's architecture is the incorporation of a Linux virtual machine (VM) on the HP laptop. This VM is designated as the application server, managing the core functionalities of the feedback feed application. Notably, the VM's connectivity is not restricted to the same Wi-Fi network as the IoT device, offering flexibility in network configurations. It communicates with the IoT device through a Mosquitto broker, which acts as an intermediary in message transmission. The IP address of the Mosquitto broker is hardcoded into the system for consistent connectivity.
+Further enhancing the system's architecture is the incorporation of a Linux virtual machine (VM) on the HP laptop. This VM is designated as the application server, managing the core functionalities of the feedback feed application. Notably, the VM's connectivity is not restricted to the same Wi-Fi network as the IoT device, offering flexibility in network configurations. It communicates with the IoT device through a Mosquitto broker, which acts as an intermediary in message transmission. The IP address of the Mosquitto broker is hardcoded into the system for consistent connectivity.\\
 
-The application leverages a REST API to handle incoming data from the IoT device. When a user interacts with the IoT device, such as by pressing a button, this action triggers a message that is relayed by the Mosquitto broker to the feed application. The application's REST API is configured to recognize this input, determining the active poll and the specific question being addressed by the IoT device. While the mechanism for transitioning between different poll questions was not fully established, the conceptual framework suggests that the REST API would facilitate this progression by incrementally recording votes and navigating to subsequent questions.
+\noindent The application leverages a REST API to handle incoming data from the IoT device. When a user interacts with the IoT device, such as by pressing a button, this action triggers a message that is relayed by the Mosquitto broker to the feed application. The application's REST API is configured to recognize this input, determining the active poll and the specific question being addressed by the IoT device. While the mechanism for transitioning between different poll questions was not fully established, the conceptual framework suggests that the REST API would facilitate this progression by incrementally recording votes and navigating to subsequent questions.
 
 \subsubsection{Analytics}
 Once the a vote is cast on the last quesiton in the poll, the application is designed to immediately reflect the analytical data offering insight into collective responses.  The system is designed to facilitate the display of analytics for all polls, regardless of their current status (active or inactive).  This functionality is implemented through a standardized display template, which is accessible via web browsers. The template ensures uniformity in the visualization of analytics, providing a coherent and consistent user experience. In addtion, the system's architecture allows for third-party applications to access poll-related data.  This capability enables external entities to conduct their own analytical assessments.  However, it is important to note that the scope of data accessible to third-party applications is confined to poll-level information. Granular data pertaining to individual questions within the polls is not available for external analysis.
 
 \subsection{FrontEnd Design} 
 To get an overview of how we wanted to implement the user interface, an application flow diagram was modeled. 
-The diagram displays how the user navigates through the different frames in the front end of the application:
+The diagram displays how the user navigates through the different frames in the front end of the application: \\
 
 \begin{figure}[h]
   \centering
@@ -43,16 +43,10 @@ The diagram displays how the user navigates through the different frames in the 
   \label{fig:appFlow}
 \end{figure}
 
-Each screen has in the diagram been modelled as a state, and for every state, the user is able to do some action or provide some input. 
+
+\noindent Each screen has in the diagram been modelled as a state, and for every state, the user is able to do some action or provide some input. 
 These actions or inputs are modelled as transitions, and are in the figure above illustrated with arrows. Transitions that results in errors are 
 colored red, and transitions that does not result in errors are colored green. Our application consists of six screens. We have a login screen, 
 where the user can either login, or create a new user. Once the user is logged in, he is directed to a start screen, where he gets the option to 
 do multiple actions. He can search for a poll, which then can be voted on, or he can view and manage his own polls. He can create new polls,
-and in this state he gets the option to pair the poll with an IoT device. 
-
-The example below shows how you may include code. There are similar
-styles for many other langages - in case you do not use Java in your
-project. You can wrap the listing into a figure in case you need to
-refer to it. How to create a figure was shown in Section~\ref{sec:technology}.
-
-\lstinputlisting[language=java]{code/BoksVolum.java}
+and in this state he gets the option to pair the poll with an IoT device. \\

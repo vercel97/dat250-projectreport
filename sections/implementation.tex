@@ -96,23 +96,11 @@ JPA repositories helps with performing create, read,update and delete (CRUD) dat
 \end{figure}
 
 \subsubsection{Integration with Spring Boot, Hibernate, and JPA}
-Our voting application uses:
+In the implementation of our voting application, we employed several key technologies and tools including Spring Boot as the primary framework to simplify configuration and setup, Hibernate for Object-Relational Mapping (ORM) translation of Java object to database representations and JPA interfaces such as  \texttt{JpaRepository} for efficient data access and manipulation.
 
-\begin{itemize}
-    \item {Spring Boot} as a framework, simplifing configuration and setup.
-    \item {Hibernate} as the ORM tool, translating Java objects to database representations.
-    \item {JPA interfaces}, such as \texttt{JpaRepository}, for efficient data access and manipulation.
-\end{itemize}
 
 \subsubsection{Functionality}
-
-Supported data models functionalities in our application:
-\begin{itemize}
-    \item User registration and management.
-    \item Interactive poll creation and management.
-    \item Voting mechanisms within polls.
-    \item Integration with IoT devices for an enhanced user experience.
-\end{itemize}
+In our application, we implemented several key functionalities including the he ability to register and manage user accounts, features for creating and managing interactive polls, voting mechanisms within these polls and Integration with a physcial IoT devices.
 
 \subsection{REST API}
 The web application consists of three key controllers, each handling different aspects of the voting system:
@@ -156,9 +144,22 @@ settings. The buttons has been created in the main-page component, but they are 
 users to new views yet.
 
 \subsubsection{IoT Device}
-The IoT device in our system, a physical unit, is implemented using C++ and is based on the ESP 8266 module, enabling Wi-Fi connectivity. This device is programmed with hardcoded Wi-Fi credentials which in our case is a cellar hotspot. Its design is straightforward, featuring just two buttons, referred to as the red and green buttons. The device is configured to publish a message to the MQTT broker whenever a button is pressed; however, it does not register continuous presses but only single clicks. These messages are then relayed by the MQTT broker, post distinct messages via REST interfacing with the IoTController.
+The IoT device in our system is a physical unit and is implemented using C++ and the Arduino library\footnote{https://www.arduino.cc/reference/en/} and is based on the ESP8266 \footnote{https://www.nabto.com/esp8266-for-iot-complete-guide} module which includes Wi-Fi connectivity. This device is programmed with hardcoded Wi-Fi credentials which in our case is a cellar hotspot. Its design is straightforward, featuring just two buttons, referred to as the red and green buttons. The device is configured to publish a message to the MQTT broker whenever a button is pressed; however, it does not register continuous presses but only single clicks. These messages are then relayed by the MQTT broker, post distinct messages via REST interfacing with the IoTController.
 
   \begin{center}
   \includegraphics[width=0.80\textwidth]{figs/button1_pressed.png}
   \end{center}
 
+\subsubsection{Messaging Receiver}
+The MQTT message receiver is provided as a service in the voting application's Spring Boot backend.  It uses HTTP requests within the registerVote method to send votes to the voting applciation.  HTTP requests are asynchronous to ensure the other messages are not blocked.   While the current setup is sufficient for the purposes of a prototype application, it's important to note that for a product intended for release, a more secure implementation would be necessary.
+
+  \begin{center}
+  \includegraphics[width=0.80\textwidth]{figs/mqtt_publish.png}
+  \end{center}
+
+\subsubsection{Docker Container}
+We created a Dockerfile in preparation for cloud deployment. This docker file invokes several events.  It builds the front end Angular application, build the Spring Bood back end application, sets an H2 database and then runs the applications.  
+
+  \begin{center}
+  \includegraphics[width=0.80\textwidth]{figs/dockerfile.png}
+  \end{center}
